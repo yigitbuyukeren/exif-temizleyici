@@ -51,6 +51,19 @@ python3 -m http.server 8000
 
 Sonra tarayıcıda `http://localhost:8000` adresini aç. (`index.html`'e çift tıklamak da çoğu tarayıcıda çalışır.)
 
+**Dosya yüklemeden denemek istersen:** [demo sayfası](https://yigitbuyukeren.github.io/exif-temizleyici/?demo) yalnızca uydurma örnek fotoğrafı temizler, dosya kabul etmez.
+
+#### ⌨️ Komut satırı
+Toplu iş için aynı kod terminalden de çalışır (Node 18+, kurulum yok):
+
+```bash
+node cli.js foto.jpg                  # foto-temiz.jpg yazar, özgün dosyaya dokunmaz
+node cli.js klasor/ -o temiz/         # klasördeki JPEG, PNG, WebP hepsini temizler
+node cli.js foto.jpg --yon-sil --renk-sil
+```
+
+Her dosya için nelerin silindiği yazılır; hata olursa çıkış kodu 1 döner.
+
 ### 🔍 Neleri siler
 
 | Alan | Örnek |
@@ -108,7 +121,7 @@ A photo from your phone carries more than the picture: **where it was taken (GPS
 
 **No quality loss:** JPEG, PNG and WebP are cleaned without re-encoding. For JPEG the compressed image data stays byte-for-byte identical. Formats the page cannot clean directly (HEIC, GIF, BMP, AVIF) are redrawn to PNG when the browser can open them. An option keeps only the orientation tag so photos do not turn sideways.
 
-**Run it:** open the [live demo](https://yigitbuyukeren.github.io/exif-temizleyici/), or `python3 -m http.server 8000` and visit `http://localhost:8000`. Try **"Örnek fotoğrafla dene"** for a fake demo photo with fake GPS.
+**Run it:** open the [live demo](https://yigitbuyukeren.github.io/exif-temizleyici/), or `python3 -m http.server 8000` and visit `http://localhost:8000`. Try **"Örnek fotoğrafla dene"** for a fake demo photo with fake GPS; the [`?demo` page](https://yigitbuyukeren.github.io/exif-temizleyici/?demo) accepts no uploads at all. **CLI:** `node cli.js photo.jpg` or `node cli.js folder/ -o clean/` writes `*-temiz` copies (Node 18+, nothing to install).
 
 **Privacy:** `index.html` ships a Content-Security-Policy with `connect-src 'none'`, so the page cannot make network requests. No analytics, fonts or CDNs. Note that the visible content of a photo (faces, signs, house numbers) is not touched.
 

@@ -72,3 +72,10 @@ test('bozuk WebP hata verir', () => {
   const kisa = webp(VP8);
   assert.throws(() => NS.webpTemizle(kisa.subarray(0, kisa.length - 3)), /Bozuk/);
 });
+
+test('bilinmeyen parçalar atılır ve raporlanır', () => {
+  const b = webp(vp8x(0), parca('ABCD', [1, 2, 3]), VP8);
+  const s = NS.webpTemizle(new Uint8Array(b), {});
+  assert.deepEqual(listele(s.cikti), ['VP8X', 'VP8 ']);
+  assert.ok(s.rapor.digerler.some((d) => /ABCD/.test(d)));
+});

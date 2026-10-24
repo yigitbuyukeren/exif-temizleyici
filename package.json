@@ -6,5 +6,13 @@
   "license": "MIT",
   "scripts": {
     "test": "node --test"
-  }
+  },
+  "bin": {
+    "exif-temizleyici": "cli.js"
+  },
+  "files": [
+    "cli.js",
+    "src",
+    "index.html"
+  ]
 }

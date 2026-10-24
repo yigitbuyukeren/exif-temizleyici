@@ -56,6 +56,8 @@ small { color: var(--soluk); }
 
 /* yükleme alanı */
 .yukle { margin: 28px 0 8px; }
+[hidden] { display: none !important; }
+
 .birak {
   display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;
   padding: 44px 20px; border: 2px dashed var(--cizgi); border-radius: 20px;

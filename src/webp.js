@@ -4,6 +4,8 @@
   const NS = (root.ExifTemizleyici = root.ExifTemizleyici || {});
 
   const BAYRAK = { icc: 0x20, exif: 0x08, xmp: 0x04 };
+  // görüntüyü oluşturan parçalar; bunların dışındakiler (bilinmeyen/özel) atılır
+  const KORU = new Set(['VP8X', 'VP8 ', 'VP8L', 'ALPH', 'ANIM', 'ANMF']);
 
   function webpTemizle(b, sec) {
     const o = sec || {};
@@ -35,6 +37,8 @@
       } else if (tip === 'ICCP') {
         rapor.icc = true;
         if (iccKoru) parcalar.push(tam);
+      } else if (!KORU.has(tip)) {
+        rapor.digerler.push('Ek parça (' + tip.trim() + ')');
       } else {
         if (tip === 'VP8X') { vp8x = parcalar.length; parcalar.push(tam.slice()); } else parcalar.push(tam);
       }

@@ -70,15 +70,15 @@
     try {
       k.sonuc = temizle(k.bayt, secenekler());
     } catch (e) {
-      if (/doğrudan temizlenemiyor/.test(e.message) && k.dosya) {
+      if (k.dosya) {
         try {
           const cikti = await yenidenCiz(k.dosya);
           const rapor = NS.bosRapor();
-          rapor.digerler.push('Biçim doğrudan temizlenemediği için yeniden çizildi (PNG)');
+          rapor.digerler.push('Dosya doğrudan temizlenemediği için yeniden çizildi (PNG)');
           k.sonuc = { bicim: 'png', uzanti: 'png', tur: 'image/png', cikti, rapor };
           k.yenidenCizildi = true;
         } catch (e2) {
-          k.hata = 'Bu biçim bu tarayıcıda açılamıyor.';
+          k.hata = e.message === 'Bu biçim doğrudan temizlenemiyor.' ? 'Bu biçim bu tarayıcıda açılamıyor.' : e.message;
         }
       } else k.hata = e.message;
     }
@@ -95,7 +95,7 @@
 
   function ozetKart(ozet, k) {
     if (k.yenidenCizildi) {
-      return h('p', { class: 'temiz', text: '🔁 Bu biçim doğrudan temizlenemiyor; görüntü yeniden çizilip PNG olarak hazırlandı. Meta veri kalmadı, ama dosya yeni bir PNG (hareketli GIF ise yalnızca ilk kare kalır).' });
+      return h('p', { class: 'temiz', text: '🔁 Bu dosya doğrudan temizlenemedi (desteklenmeyen biçim ya da bozuk yapı); görüntü yeniden çizilip PNG olarak hazırlandı. Meta veri kalmadı, ama dosya yeni bir PNG (hareketli GIF ise yalnızca ilk kare kalır).' });
     }
     if (!ozet.length) return h('p', { class: 'temiz', text: '✅ Bu fotoğrafta silinecek bir şey bulunamadı. Zaten temizmiş.' });
     return h('ul', { class: 'bulunan' }, ozet.map((x) => h('li', { class: x.agir ? 'agir' : '' },
@@ -179,16 +179,23 @@
 
   // ---- olaylar ----
   const birak = $('birak');
-  $('dosya').addEventListener('change', (e) => { dosyaEkle(e.target.files); e.target.value = ''; });
-  birak.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('dosya').click(); } });
+  // ?demo: yalnızca örnek fotoğraf çalışır, dosya yükleme kapalıdır
+  const demo = new URLSearchParams(location.search).has('demo');
+  if (demo) {
+    birak.hidden = true;
+    $('demo-not').hidden = false;
+    $('ornek').classList.remove('ikincil');
+  }
+  if (!demo) $('dosya').addEventListener('change', (e) => { dosyaEkle(e.target.files); e.target.value = ''; });
+  if (!demo) birak.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); $('dosya').click(); } });
   ['dragenter', 'dragover'].forEach((a) => birak.addEventListener(a, (e) => { e.preventDefault(); birak.classList.add('ustunde'); }));
   ['dragleave', 'drop'].forEach((a) => birak.addEventListener(a, (e) => { e.preventDefault(); birak.classList.remove('ustunde'); }));
-  birak.addEventListener('drop', (e) => dosyaEkle(e.dataTransfer.files));
+  if (!demo) birak.addEventListener('drop', (e) => dosyaEkle(e.dataTransfer.files));
   window.addEventListener('dragover', (e) => e.preventDefault());
   window.addEventListener('drop', (e) => e.preventDefault());
   document.addEventListener('paste', (e) => {
     const f = [...(e.clipboardData ? e.clipboardData.files : [])];
-    if (f.length) dosyaEkle(f);
+    if (f.length && !demo) dosyaEkle(f);
   });
   $('yon').addEventListener('change', yenidenIsle);
   $('renk').addEventListener('change', yenidenIsle);
