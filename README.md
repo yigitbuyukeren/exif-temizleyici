@@ -7,7 +7,7 @@
 
 <div align="center">
 
-**[🌐 Canlı demo](https://yigitbuyukeren.github.io/exif-temizleyici/)** &nbsp;·&nbsp; **[🚀 Nasıl kullanılır](#-nasıl-kullanılır)** &nbsp;·&nbsp; **[🔍 Neleri siler](#-neleri-siler)** &nbsp;·&nbsp; **[🐞 Sorun bildir](https://github.com/yigitbuyukeren/exif-temizleyici/issues)**
+**[🌐 Demo](https://yigitbuyukeren.github.io/exif-temizleyici/?demo)** &nbsp;·&nbsp; **[🧼 Aracı kullan](https://yigitbuyukeren.github.io/exif-temizleyici/)** &nbsp;·&nbsp; **[🚀 Nasıl kullanılır](#-nasıl-kullanılır)** &nbsp;·&nbsp; **[🔍 Neleri siler](#-neleri-siler)** &nbsp;·&nbsp; **[🐞 Sorun bildir](https://github.com/yigitbuyukeren/exif-temizleyici/issues)**
 
 [![Lisans: MIT](https://img.shields.io/badge/lisans-MIT-2F6BFF?style=flat-square&labelColor=0F1219)](LICENSE)
 ![Bağımlılık](https://img.shields.io/badge/ba%C4%9F%C4%B1ml%C4%B1l%C4%B1k-0-2F6BFF?style=flat-square&labelColor=0F1219)

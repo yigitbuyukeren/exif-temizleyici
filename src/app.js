@@ -183,6 +183,7 @@
   const demo = new URLSearchParams(location.search).has('demo');
   if (demo) {
     birak.hidden = true;
+    document.querySelector('.secenekler').hidden = true;
     $('demo-not').hidden = false;
     $('ornek').classList.remove('ikincil');
   }
