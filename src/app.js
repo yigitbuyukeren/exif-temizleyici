@@ -179,8 +179,10 @@
 
   // ---- olaylar ----
   const birak = $('birak');
-  // ?demo: yalnızca örnek fotoğraf çalışır, dosya yükleme kapalıdır
-  const demo = new URLSearchParams(location.search).has('demo');
+  // Yayındaki (barındırılan) sayfa yalnızca demodur: örnek fotoğraf çalışır, dosya yükleme kapalıdır.
+  // Gerçek araç yerelde (localhost ya da dosyadan açınca) ve komut satırında çalışır.
+  const yerel = location.protocol === 'file:' || ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+  const demo = !yerel || new URLSearchParams(location.search).has('demo');
   if (demo) {
     birak.hidden = true;
     document.querySelector('.secenekler').hidden = true;

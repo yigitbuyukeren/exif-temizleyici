@@ -7,7 +7,7 @@
 
 <div align="center">
 
-**[🌐 Demo](https://yigitbuyukeren.github.io/exif-temizleyici/?demo)** &nbsp;·&nbsp; **[🧼 Aracı kullan](https://yigitbuyukeren.github.io/exif-temizleyici/)** &nbsp;·&nbsp; **[🚀 Nasıl kullanılır](#-nasıl-kullanılır)** &nbsp;·&nbsp; **[🔍 Neleri siler](#-neleri-siler)** &nbsp;·&nbsp; **[🐞 Sorun bildir](https://github.com/yigitbuyukeren/exif-temizleyici/issues)**
+**[🌐 Demo](https://yigitbuyukeren.github.io/exif-temizleyici/)** &nbsp;·&nbsp; **[🚀 Nasıl kullanılır](#-nasıl-kullanılır)** &nbsp;·&nbsp; **[🔍 Neleri siler](#-neleri-siler)** &nbsp;·&nbsp; **[🐞 Sorun bildir](https://github.com/yigitbuyukeren/exif-temizleyici/issues)**
 
 [![Lisans: MIT](https://img.shields.io/badge/lisans-MIT-2F6BFF?style=flat-square&labelColor=0F1219)](LICENSE)
 ![Bağımlılık](https://img.shields.io/badge/ba%C4%9F%C4%B1ml%C4%B1l%C4%B1k-0-2F6BFF?style=flat-square&labelColor=0F1219)
@@ -22,7 +22,7 @@
 <details open>
 <summary><h2>🇹🇷 Türkçe</h2></summary>
 
-Telefonla çekilen bir fotoğraf yalnızca görüntüyü değil, **çekildiği yeri (GPS), cihazı, lensi, seri numarasını ve zamanı** da taşır. Bunu sosyal medyaya, ilana ya da mesaja öylece göndermek evinin adresini vermek anlamına gelebilir. Fotoğrafı bu sayfaya bırakırsın, tarayıcın gizli bilgileri siler ve temiz hâlini indirirsin. **Sunucu, hesap, yükleme yok; fotoğraf cihazından çıkmaz.**
+Telefonla çekilen bir fotoğraf yalnızca görüntüyü değil, **çekildiği yeri (GPS), cihazı, lensi, seri numarasını ve zamanı** da taşır. Bunu sosyal medyaya, ilana ya da mesaja öylece göndermek evinin adresini vermek anlamına gelebilir. Projeyi kendi bilgisayarında açıp fotoğrafı sayfaya bırakırsın (ya da komut satırını kullanırsın), gizli bilgiler silinir ve temiz hâlini alırsın. **Sunucu, hesap, yükleme yok; fotoğraf cihazından çıkmaz.**
 
 <p align="center">
   <picture>
@@ -38,10 +38,11 @@ Telefonla çekilen bir fotoğraf yalnızca görüntüyü değil, **çekildiği y
 | Sayfa ağa bağlanamaz, güvenlik politikasıyla kilitli | Görüntü yeniden sıkıştırılmaz, pikseller birebir aynı | Konum, cihaz, zaman ve gizli ekler tek tek listelenir | Saf JavaScript, kütüphane yok |
 
 ### 🚀 Nasıl kullanılır
-1. 🌐 [Canlı demoyu](https://yigitbuyukeren.github.io/exif-temizleyici/) aç (ya da aşağıdaki gibi kendi bilgisayarında çalıştır). İstersen önce **Örnek fotoğrafla dene** düğmesine bas.
-2. 🖼️ Fotoğrafları sayfaya **sürükle**, **seç** ya da **yapıştır**. Birden çok dosya bırakabilirsin.
-3. 📋 Listede her fotoğrafta nelerin bulunup silindiğini gör.
-4. ⬇️ Tek tek ya da hepsini **.zip** olarak indir.
+1. 🌐 Önce [demoya](https://yigitbuyukeren.github.io/exif-temizleyici/) bak: yayındaki sayfa yalnızca uydurma bir örnek fotoğrafı temizler, dosya kabul etmez.
+2. 💻 Kendi fotoğrafların için projeyi indir ve **kendi bilgisayarında** aç (aşağıda) ya da komut satırını kullan.
+3. 🖼️ Yerelde açılan sayfaya fotoğrafları **sürükle**, **seç** ya da **yapıştır**. Birden çok dosya bırakabilirsin.
+4. 📋 Listede her fotoğrafta nelerin bulunup silindiğini gör.
+5. ⬇️ Tek tek ya da hepsini **.zip** olarak indir.
 
 Sayfayı kendi bilgisayarında açmak için:
 
@@ -51,7 +52,7 @@ python3 -m http.server 8000
 
 Sonra tarayıcıda `http://localhost:8000` adresini aç. (`index.html`'e çift tıklamak da çoğu tarayıcıda çalışır.)
 
-**Dosya yüklemeden denemek istersen:** [demo sayfası](https://yigitbuyukeren.github.io/exif-temizleyici/?demo) yalnızca uydurma örnek fotoğrafı temizler, dosya kabul etmez.
+Yayındaki sayfa bilerek salt demodur; gerçek temizleme senin bilgisayarında (yerel sayfa ya da komut satırı) çalışır.
 
 #### ⌨️ Komut satırı
 Toplu iş için aynı kod terminalden de çalışır (Node 18+, kurulum yok):
@@ -115,13 +116,13 @@ Testler EXIF okuma ve yazma gidiş dönüşünü (GPS işaretleri, iki bayt sır
 <details>
 <summary><h2>🇬🇧 English</h2></summary>
 
-A photo from your phone carries more than the picture: **where it was taken (GPS), the device, lens, serial number and the time.** Drop photos on the page and your browser strips that hidden data and hands you the clean files. **No server, no account, no upload; photos never leave your device.** The interface is in Turkish.
+A photo from your phone carries more than the picture: **where it was taken (GPS), the device, lens, serial number and the time.** Run the project on your own machine (page or command line) and it strips that hidden data and hands you the clean files. **No server, no account, no upload; photos never leave your device.** The interface is in Turkish.
 
 **What it removes:** GPS coordinates, camera make/model/lens/serial, software, timestamps, owner and copyright fields, XMP, IPTC, JPEG comments, PNG text chunks, embedded thumbnails, MPF data, motion-photo videos and anything appended after the end of the file. The page lists what it found in each photo, then re-scans the clean file to verify.
 
 **No quality loss:** JPEG, PNG and WebP are cleaned without re-encoding. For JPEG the compressed image data stays byte-for-byte identical. Formats the page cannot clean directly (HEIC, GIF, BMP, AVIF) are redrawn to PNG when the browser can open them. An option keeps only the orientation tag so photos do not turn sideways.
 
-**Run it:** open the [live demo](https://yigitbuyukeren.github.io/exif-temizleyici/), or `python3 -m http.server 8000` and visit `http://localhost:8000`. Try **"Örnek fotoğrafla dene"** for a fake demo photo with fake GPS; the [`?demo` page](https://yigitbuyukeren.github.io/exif-temizleyici/?demo) accepts no uploads at all. **CLI:** `node cli.js photo.jpg` or `node cli.js folder/ -o clean/` writes `*-temiz` copies (Node 18+, nothing to install).
+**Run it:** the [hosted page](https://yigitbuyukeren.github.io/exif-temizleyici/) is a demo only (a fake photo with fake GPS, no uploads accepted). To clean your own photos, run it on your machine: `python3 -m http.server 8000` and visit `http://localhost:8000`, or use the CLI below. **CLI:** `node cli.js photo.jpg` or `node cli.js folder/ -o clean/` writes `*-temiz` copies (Node 18+, nothing to install).
 
 **Privacy:** `index.html` ships a Content-Security-Policy with `connect-src 'none'`, so the page cannot make network requests. No analytics, fonts or CDNs. Note that the visible content of a photo (faces, signs, house numbers) is not touched.
 
