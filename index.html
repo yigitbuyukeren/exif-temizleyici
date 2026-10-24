@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>EXIF Temizleyici</title>
+  <meta name="description" content="Fotoğraflarındaki konum, cihaz ve tarih bilgisini sil. Her şey tarayıcında olur, fotoğraf hiçbir yere yüklenmez.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <main class="sayfa">
+    <header class="ust">
+      <p class="rozet"><span class="nokta"></span> Fotoğraf hiçbir yere yüklenmez</p>
+      <h1>EXIF Temizleyici</h1>
+      <p class="alt">Telefonla çekilen fotoğraf, çekildiği yeri, cihazı ve zamanı da taşır. Paylaşmadan önce buraya bırak: gizli bilgiler silinsin, görüntü olduğu gibi kalsın.</p>
+    </header>
+
+    <section id="yukle" class="yukle">
+      <label id="birak" class="birak" tabindex="0" for="dosya">
+        <span class="birak-ikon" aria-hidden="true">🧼</span>
+        <strong>Fotoğrafları buraya sürükle</strong>
+        <span>ya da seçmek için tıkla, ya da yapıştır (JPEG, PNG, WebP)</span>
+        <input id="dosya" type="file" accept="image/*" multiple>
+      </label>
+
+      <div class="secenekler">
+        <label class="secenek"><input id="yon" type="checkbox" checked> <span><b>Yönü koru</b> <small>Fotoğraf yan dönmesin diye yalnızca dönüklük bilgisi kalır; başka hiçbir şey kalmaz.</small></span></label>
+        <label class="secenek"><input id="renk" type="checkbox" checked> <span><b>Renk profilini koru</b> <small>Renklerin doğru görünmesi için gerekir, kimlik bilgisi taşımaz.</small></span></label>
+      </div>
+
+      <div class="eylemler">
+        <button id="ornek" type="button" class="dugme ikincil">Örnek fotoğrafla dene</button>
+      </div>
+      <p id="hata" class="hata" role="alert" hidden></p>
+    </section>
+
+    <section id="sonuc" class="sonuc" hidden></section>
+
+    <section class="bilgi">
+      <h2>Neleri siler?</h2>
+      <ul>
+        <li><b>Konum:</b> GPS koordinatları ve irtifa</li>
+        <li><b>Cihaz:</b> marka, model, lens, seri numarası, yazılım sürümü</li>
+        <li><b>Zaman:</b> çekim ve düzenleme tarihi</li>
+        <li><b>Gömülü metin:</b> XMP, IPTC, yorumlar, yazar ve telif alanları, PNG metin parçaları</li>
+        <li><b>Gizli ekler:</b> küçük önizleme resimleri, hareketli fotoğraf videosu, dosyanın sonuna eklenmiş veri</li>
+      </ul>
+      <p>Görüntüyü yeniden sıkıştırmaz: pikseller birebir aynı kalır, kalite kaybı olmaz. Ekran görüntüsü ve kırpma gibi sonradan oluşan görüntülerde de işe yarar.</p>
+    </section>
+
+    <footer class="alt-bilgi">
+      <p>Sayfa dışarıya bağlanamaz: tarayıcıya "ağ isteği yapma" diyen bir güvenlik politikası içerir ve kaynak kodu açıktır.</p>
+      <p><a href="https://github.com/yigitbuyukeren/exif-temizleyici">Kaynak kodu</a> · MIT lisanslı</p>
+    </footer>
+  </main>
+
+  <script src="src/ornek-veri.js"></script>
+  <script src="src/ortak.js"></script>
+  <script src="src/exif.js"></script>
+  <script src="src/jpeg.js"></script>
+  <script src="src/png.js"></script>
+  <script src="src/webp.js"></script>
+  <script src="src/temizle.js"></script>
+  <script src="src/zip.js"></script>
+  <script src="src/ornek.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>

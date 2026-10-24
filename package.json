@@ -1,0 +1,10 @@
+{
+  "name": "exif-temizleyici",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fotoğraflardaki konum, cihaz ve tarih bilgisini tarayıcıda, hiçbir şey göndermeden siler.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test"
+  }
+}
