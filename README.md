@@ -86,6 +86,22 @@ Her dosya için nelerin silindiği yazılır; hata olursa çıkış kodu 1 döne
 **Seçenekler:** *Yönü koru* açıkken fotoğrafın yan dönmesini engellemek için yalnızca dönüklük (Orientation) bilgisi içeren, başka hiçbir alan taşımayan küçük bir EXIF bırakılır. *Renk profilini koru* renklerin doğru görünmesini sağlar ve kimlik bilgisi taşımaz. İkisini de kapatırsan dosyada hiçbir ek bilgi kalmaz.
 
 ### 🔧 Nasıl çalışıyor
+
+```mermaid
+flowchart LR
+    F[Dosya baytları] --> B{bicimBul<br/>imzaya göre}
+    B -->|JPEG| J[jpeg.js<br/>bölümleri gez]
+    B -->|PNG| P[png.js<br/>parçaları gez]
+    B -->|WebP| W[webp.js<br/>parçaları gez]
+    B -->|diğer / bozuk| C[Canvas ile yeniden çiz<br/>PNG çıktı]
+    J --> R[rapor + temiz bayt]
+    P --> R
+    W --> R
+    X[exif.js<br/>EXIF/GPS okuyucu] -.->|ne bulundu| R
+    R --> V[hassasVar<br/>temiz dosyayı tekrar tara]
+    V --> O[arayüz listesi · indirme · zip]
+```
+
 - **JPEG** ([`src/jpeg.js`](src/jpeg.js)): `FFxx` işaretçilerini sırayla okur. `APP1` (EXIF, XMP), `APP13` (IPTC), `COM` (yorum), `MPF` ve bilinmeyen `APPn` bölümlerini atar; `JFIF` içindeki küçük resmi kaldırır; ilk tarama başlığından itibaren (ilerlemeli JPEG'in tüm taramaları dahil) veriyi aynen kopyalar. Bitiş işaretçisinden sonraki her şey atılır.
 - **PNG** ([`src/png.js`](src/png.js)) ve **WebP** ([`src/webp.js`](src/webp.js)): parçaları gezer, izin verilenleri CRC'leri bozulmadan kopyalar.
 - **EXIF okuyucu** ([`src/exif.js`](src/exif.js)): TIFF yapısını (iki bayt sırası, IFD0, Exif ve GPS alt dizinleri) sınır kontrolleriyle okur, bozuk dosyada hata değil boş sonuç döner. Aynı dosya, yön korunurken tek etiketli bir EXIF kurmak için küçük bir yazıcı da içerir.
@@ -98,6 +114,8 @@ Her dosya için nelerin silindiği yazılır; hata olursa çıkış kodu 1 döne
 - Örnek fotoğraf ve testlerdeki veriler uydurmadır; gerçek bir fotoğraf depoda bulunmaz.
 
 ### ⚠️ Sınırlar
+- **Demo sınırı:** yayındaki sayfa yalnızca uydurma örnek fotoğrafı işler; yükleme kapalıdır. Gerçek temizleme yerelde veya `cli.js` ile yapılır.
+- Yalnızca JPEG, PNG ve WebP bayt düzeyinde temizlenir; diğer biçimler yeniden çizilir (sıkıştırma değişir, hareketli GIF'te ilk kare kalır). Doğrulama yalnızca bu projenin kendi okuyucusunun bulabildiği alanları tarar; her üretici ekini bilmesi garanti değildir.
 - Fotoğrafın **içeriği** (yüz, tabela, ev numarası, yansıma) elbette silinmez; yalnızca dosyaya gömülü bilgi silinir.
 - Sosyal medya siteleri yüklenen fotoğrafın meta verisini kendileri de temizler, ama bunu garanti etmezler; e-posta, mesajlaşma ve dosya paylaşımında çoğu zaman olduğu gibi gider.
 - Dosya adı olduğu gibi kalır (sonuna `-temiz` eklenir); adında kişisel bilgi varsa indirirken değiştir.
