@@ -1,0 +1,36 @@
+name: Geri bildirim / deneme raporu
+description: Denedin mi? Ne çalıştı, ne çalışmadı? Kısa bir not yeter.
+title: "Geri bildirim: "
+labels: [geri-bildirim]
+body:
+  - type: markdown
+    attributes:
+      value: "Kullanım deneyimini paylaştığın için teşekkürler. Lütfen kişisel veri, konum, fotoğraf veya sohbet içeriği paylaşma; gerekiyorsa örneği anonimleştir."
+  - type: input
+    attributes:
+      label: "Tarayıcı veya komut satırı"
+      description: "Örn. Safari 18 / node cli.js"
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: "Dosya biçimi"
+      options:
+        - "JPEG"
+        - "PNG"
+        - "WebP"
+        - "Diğer"
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: "Ne denedin ve sonuç ne oldu?"
+      description: "Hangi bilgiler silindi, hangileri kaldı? (Lütfen kişisel veri, konum, fotoğraf veya sohbet içeriği paylaşma; gerekiyorsa örneği anonimleştir.)"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Önerin var mı?"
+      description: "Hiçbir şey yazmasan da olur."
+    validations:
+      required: false

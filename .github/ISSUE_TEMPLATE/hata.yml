@@ -1,0 +1,36 @@
+name: Hata bildirimi
+description: Bir şey beklediğin gibi çalışmıyor
+title: "Hata: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Lütfen kişisel veri, konum, fotoğraf veya sohbet içeriği paylaşma; gerekiyorsa örneği anonimleştir."
+  - type: input
+    attributes:
+      label: "Tarayıcı veya komut satırı"
+      description: "Örn. Safari 18 / node cli.js"
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: "Dosya biçimi"
+      options:
+        - "JPEG"
+        - "PNG"
+        - "WebP"
+        - "Diğer"
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: "Ne oldu?"
+      description: "Beklediğin ve gerçekleşen davranış."
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Nasıl tekrarlanır?"
+      description: "Adım adım."
+    validations:
+      required: true
