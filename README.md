@@ -121,6 +121,15 @@ flowchart LR
 - Dosya adı olduğu gibi kalır (sonuna `-temiz` eklenir); adında kişisel bilgi varsa indirirken değiştir.
 
 ### 🛠️ Geliştirme
+
+Bir biçim üzerinde çalışırken ilgili testi hızlıca çalıştırabilirsin; örneğin:
+
+```bash
+node --test tests/png.test.js
+```
+
+Teslimden önce tüm testleri çalıştır; hedefli kontrol bunun yerine geçmez:
+
 ```bash
 npm test        # node --test, bağımlılık kurmak gerekmez (Node 18+)
 ```
